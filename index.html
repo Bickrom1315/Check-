@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot</title>
+</head>
+<body>
+    <h1>Welcome to Telegram Bot</h1>
+    <button onclick="getUserInfo()">Get My Info</button>
+    <div id="user-info">
+        <!-- User info will be displayed here -->
+    </div>
+
+    <script>
+        async function getUserInfo() {
+            const response = await fetch('/get_user_info');
+            const data = await response.json();
+            document.getElementById('user-info').innerHTML = `
+                <p>Name: ${data.name}</p>
+                <img src="${data.photo_url}" alt="Profile Picture" width="150">
+            `;
+        }
+    </script>
+</body>
+</html>
